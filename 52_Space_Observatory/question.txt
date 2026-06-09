@@ -1,0 +1,112 @@
+Space Observatory
+
+ 
+
+You are an Astronomer in a Space Observatory. You are given two DataFrames df_star and df_planet.
+
+ 
+
+df_star
+
+
++-------------+-----------+
+| Column Name | Data Type |
++-------------+-----------+
+|     id      |  integer  |
+|    name     |  string   |
+|    color    |  string   |
+|    type     |  string   |
+|  distance   |   float   |
++-------------+-----------+
+
+id is a unique identifier for the star.
+name is the name of the star.
+color is the color of the star.
+type is the type of the star (e.g., Dwarf, Giant, SuperGiant).
+distance is the distance of the star from earth in light years.
+ 
+
+df_planet
+
+
++-------------+-----------+
+| Column Name | Data Type |
++-------------+-----------+
+|     id      |  integer  |
+|    name     |  string   |
+|   star_id   |  integer  |
+|    type     |  string   |
+|  distance   |   float   |
++-------------+-----------+
+ 
+id is a unique identifier for the planet.
+name is the name of the planet.
+star_id is the identifier of the star that the planet orbits around.
+type is the type of the planet (e.g., Gas Giant, Terrestrial).
+distance is the distance of the planet from its star in Astronomical Units (AU).
+ 
+
+Write a function that performs performs multiple self joins to return the following schema:
+
+ 
+
+Output Schema:
+
+
++----------------------+-----------+
+|     Column Name      | Data Type |
++----------------------+-----------+
+|      star_name       |  string   |
+|      star_color      |  string   |
+|      star_type       |  string   |
+|     planet_name      |  string   |
+|     planet_type      |  string   |
+| distance_star_earth  |   float   |
+| distance_planet_star |   float   |
++----------------------+-----------+
+
+star_name is the name of the star.
+star_color is the color of the star.
+star_type is the type of the star.
+planet_name is the name of the planet.
+planet_type is the type of the planet.
+distance_star_earth is the distance of the star from earth in light years.
+distance_planet_star is the distance of the planet from its star in Astronomical Units (AU).
+ 
+
+ 
+
+
+Example
+
+
+df_star
++----+--------+--------+--------------------+----------+
+| id |  name  | color  |        type        | distance |
++----+--------+--------+--------------------+----------+
+| 1  |  Sun   | Yellow |       Dwarf        |   0.0    |
+| 2  | Sirius |  Blue  | Main Sequence Star |   8.6    |
+| 3  |  Vega  |  Blue  | Main Sequence Star |   25.0   |
++----+--------+--------+--------------------+----------+
+
+df_planet
++----+----------+---------+-------------+----------+
+| id |   name   | star_id |    type     | distance |
++----+----------+---------+-------------+----------+
+| 1  | Mercury  |    1    | Terrestrial |   0.39   |
+| 2  |  Venus   |    1    | Terrestrial |   0.72   |
+| 3  |   Mars   |    1    | Terrestrial |   1.52   |
+| 4  | Sirius B |    2    |  Gas Giant  |   20.0   |
+| 5  |  Vega b  |    3    |  Gas Giant  |   25.0   |
++----+----------+---------+-------------+----------+
+
+Expected
++----------------------+---------------------+-------------+-------------+------------+-----------+--------------------+
+| distance_planet_star | distance_star_earth | planet_name | planet_type | star_color | star_name |     star_type      |
++----------------------+---------------------+-------------+-------------+------------+-----------+--------------------+
+|         0.39         |         0.0         |   Mercury   | Terrestrial |   Yellow   |    Sun    |       Dwarf        |
+|         0.72         |         0.0         |    Venus    | Terrestrial |   Yellow   |    Sun    |       Dwarf        |
+|         1.52         |         0.0         |    Mars     | Terrestrial |   Yellow   |    Sun    |       Dwarf        |
+|         20.0         |         8.6         |  Sirius B   |  Gas Giant  |    Blue    |  Sirius   | Main Sequence Star |
+|         25.0         |        25.0         |   Vega b    |  Gas Giant  |    Blue    |   Vega    | Main Sequence Star |
++----------------------+---------------------+-------------+-------------+------------+-----------+--------------------+

@@ -1,0 +1,62 @@
+Archaeology Record Keeping
+
+ 
+
+In the field of archaeology, efficient handling of data is paramount. To manage the collected artifacts, an archaeological team uses a Data Warehouse. Your task is to perform a transformation operation on this data. You will be provided with a DataFrame 'artifacts' which contains the following schema:
+
+ 
+
+artifacts
+
++-------------+-----------+
+| Column Name | Data Type |
++-------------+-----------+
+|     ID      |  String   |
+|    Item     |  String   |
+|   Period    |  String   |
+|  Material   |  String   |
+|  Quantity   |  Integer  |
++-------------+-----------+
+
+ 
+
+The 'ID' column is the unique identifier of the artifact. 'Item' is the type of the artifact (pottery, weapon, jewel, etc.). 'Period' refers to the archaeological period the item is believed to originate from (Prehistoric, Roman, Medieval, etc.). 'Material' is what the item is made from (stone, metal, pottery, etc.). 'Quantity' is the number of those specific items found.
+
+ 
+
+Write a function that converts 'Material' to upper case and filters for only 'Quantity' greater than 100.
+
+ 
+
+Output Schema
+
++-------------+-----------+
+| Column Name | Data Type |
++-------------+-----------+
+|     ID      |  String   |
+|    Item     |  String   |
+|   Period    |  String   |
+|  Material   |  String   |
+|  Quantity   |  Integer  |
++-------------+-----------+
+ 
+
+Example
+
+
+artifacts
++----+---------+-------------+----------+----------+
+| ID |  Item   |   Period    | Material | Quantity |
++----+---------+-------------+----------+----------+
+| 1  | Pottery | Prehistoric |   clay   |   150    |
+| 2  | Weapon  |  Medieval   |  metal   |    90    |
+| 3  |  Jewel  |    Roman    |   gold   |   200    |
++----+---------+-------------+----------+----------+
+
+Expected
++----+---------+----------+-------------+----------+
+| ID |  Item   | Material |   Period    | Quantity |
++----+---------+----------+-------------+----------+
+| 1  | Pottery |   CLAY   | Prehistoric |   150    |
+| 3  |  Jewel  |   GOLD   |    Roman    |   200    |
++----+---------+----------+-------------+----------+

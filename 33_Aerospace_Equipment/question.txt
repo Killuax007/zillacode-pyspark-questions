@@ -1,0 +1,90 @@
+Aerospace Equipment
+ 
+
+In this problem, you are given two DataFrames: aerospace_df and company_df.
+
+ 
+
+aerospace_df contains information about various aerospace equipment. It has the following schema:
+
+
++-------------+-----------+
+| Column Name | Data Type |
++-------------+-----------+
+|     id      |  string   |
+|    name     |  string   |
+|    type     |  string   |
+|   status    |  string   |
+| company_id  |  string   |
++-------------+-----------+
+ 
+
+company_df contains information about different companies in the aerospace industry. It has the following schema:
+
+
++-------------+-----------+
+| Column Name | Data Type |
++-------------+-----------+
+|     id      |  string   |
+|    name     |  string   |
+|   country   |  string   |
++-------------+-----------+
+ 
+
+The goal is to join these two DataFrames so that they have the following schema:
+
+
++------------------+-----------+
+|   Column Name    | Data Type |
++------------------+-----------+
+|        id        |  string   |
+|  equipment_name  |  string   |
+|  equipment_type  |  string   |
+| equipment_status |  string   |
+|   company_name   |  string   |
+|     country      |  string   |
+|   status_label   |  string   |
++------------------+-----------+
+
+ 
+
+The status_label column in the output is derived from the status column of the aerospace_df DataFrame and the country column of company_df. If the status is "active" and the country is "USA", the status_label should be "Domestic Active". If the status is "active" and the country is not "USA", the status_label should be "Foreign Active". If the status is not "active", regardless of the country, the status_label should be "Inactive".
+
+ 
+
+ 
+
+ 
+
+Example
+
+aerospace_df
++----+-----------+-----------+----------+------------+
+| id |   name    |   type    |  status  | company_id |
++----+-----------+-----------+----------+------------+
+| A1 | Falcon 9  |  Rocket   |  active  |     C1     |
+| A2 | Starship  |  Rocket   |  active  |     C1     |
+| A3 |  Hubble   | Telescope |  active  |     C2     |
+| A4 |  Galileo  | Satellite | inactive |     C3     |
+| A5 | Voyager 1 |   Probe   |  active  |     C3     |
++----+-----------+-----------+----------+------------+
+
+company_df
++----+-----------------------+---------+
+| id |         name          | country |
++----+-----------------------+---------+
+| C1 |        SpaceX         |   USA   |
+| C2 |         NASA          |   USA   |
+| C3 | European Space Agency | Europe  |
++----+-----------------------+---------+
+
+Expected
++-----------------------+---------+----------------+------------------+----------------+----+-----------------+
+|     company_name      | country | equipment_name | equipment_status | equipment_type | id |  status_label   |
++-----------------------+---------+----------------+------------------+----------------+----+-----------------+
+| European Space Agency | Europe  |    Galileo     |     inactive     |   Satellite    | A4 |    Inactive     |
+| European Space Agency | Europe  |   Voyager 1    |      active      |     Probe      | A5 | Foreign Active  |
+|         NASA          |   USA   |     Hubble     |      active      |   Telescope    | A3 | Domestic Active |
+|        SpaceX         |   USA   |    Falcon 9    |      active      |     Rocket     | A1 | Domestic Active |
+|        SpaceX         |   USA   |    Starship    |      active      |     Rocket     | A2 | Domestic Active |
++-----------------------+---------+----------------+------------------+----------------+----+-----------------+

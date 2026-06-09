@@ -1,0 +1,67 @@
+Mathematical Regular Expressions
+ 
+
+You have been given a DataFrame that holds information about mathematical expressions. Each row represents an expression. Your task is to filter out those rows which do not contain a valid mathematical expression.
+
+ 
+
+'df_math_expr' has the following schema:
+
+
++-------------+-----------+
+| Column Name | Data Type |
++-------------+-----------+
+|     id      |  integer  |
+| expression  |  string   |
++-------------+-----------+
+ 
+
+The output will have the same schema:
+
+
++-------------+-----------+
+| Column Name | Data Type |
++-------------+-----------+
+|     id      |  integer  |
+| expression  |  string   |
++-------------+-----------+
+ 
+
+A valid mathematical expression is defined as any string that contains one or more numbers (0-9) separated by any of the four basic arithmetic operators (+, -, *, /).
+
+ 
+
+To accomplish this, you will need to write a function that returns rows containing valid mathematical expressions only.
+
+ 
+
+ 
+
+Notes:
+
+The 'id' column represents a unique identifier for each row in the DataFrame.
+The 'expression' column represents a mathematical expression.
+The order of the output should be the same as the input DataFrame.
+ 
+
+Example
+
+df_math_expr
++----+------------+
+| id | expression |
++----+------------+
+| 1  |    5+3     |
+| 2  |   hello    |
+| 3  |    6/3     |
+| 4  |   world    |
+| 5  |   2*3+1    |
++----+------------+
+
+Expected
++------------+----+
+| expression | id |
++------------+----+
+|   2*3+1    | 5  |
+|    5+3     | 1  |
+|    6/3     | 3  |
++------------+----+
