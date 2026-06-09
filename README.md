@@ -9,7 +9,7 @@
 * string , list , dictionary 
 * many more...
 
-## if you know a better approach or want to contribute sync it with databricks and new solutions  
+## if you know a better approach or want to contribute sync it with databricks and add new solutions  
 
 __folder Structure__
 
