@@ -1,7 +1,6 @@
 Running Payroll
 
 
-
 You work in the payroll department and are asked to process the payroll data of a company. You are given two DataFrames: employees and payroll. employees contains employee information, and payroll contains the payroll data.
 
 
